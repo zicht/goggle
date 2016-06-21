@@ -23,20 +23,26 @@ class GetCommand extends Command
             ->setDescription("Get a config value from a file")
             ->addArgument('file', InputArgument::REQUIRED, 'The file to read')
             ->addArgument('path', InputArgument::IS_ARRAY, 'Config path')
-            ->addOption('format', '', InputOption::VALUE_REQUIRED, 'Output format', 'text')
+            ->addOption('out', 'o', InputOption::VALUE_REQUIRED, 'Output format', 'text')
+            ->addOption('type', 't', InputOption::VALUE_REQUIRED, 'Input format', null)
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $file = $input->getArgument('file');
+
         if ($file === '-') {
             $file = 'php://stdin';
         }
 
-        $loader = Loader\Factory::createLoader(Loader\Factory::guessType($file));
-        $loader->setInput(fopen($input->getArgument('file'), 'r'));
-        $writer = Writer\Factory::createWriter($input->getOption('format'));
+        if (!($type = $input->getOption('type'))) {
+            $type = Loader\Factory::guessType($file);
+        }
+
+        $loader = Loader\Factory::createLoader($type);
+        $loader->setInput(fopen($file, 'r'));
+        $writer = Writer\Factory::createWriter($input->getOption('out'));
 
         $writer->setOutput(fopen('php://stdout', 'w'));
         $writer->write(

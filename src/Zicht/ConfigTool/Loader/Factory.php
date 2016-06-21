@@ -46,6 +46,6 @@ class Factory
                 return new Impl\Ini();
         }
 
-        throw new UnknownLoaderTypeException("Sorry, loader type {$type} is not something I do");
+        throw new UnknownLoaderTypeException("Sorry, loader type `{$type}` is unsupported");
     }
 }
