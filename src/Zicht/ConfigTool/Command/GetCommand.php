@@ -44,7 +44,12 @@ class GetCommand extends Command
         }
 
         $loader = Loader\Factory::createLoader($type);
-        $loader->setInput(fopen($file, 'r'));
+        $inputStream = fopen($file, 'r');
+        if (!$inputStream) {
+            throw new \RuntimeException("Could not open input");
+        }
+        $loader->setInput($inputStream);
+
         $writer = Writer\Factory::createWriter($input->getOption('out'));
 
         $writer->setOutput(fopen('php://stdout', 'w'));
