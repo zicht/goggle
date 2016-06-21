@@ -10,7 +10,7 @@ class Factory
     const JSON = 'json';
     const YAML = 'yaml';
     const INI = 'ini';
-    const TXT = 'text';
+    const COLUMNS = 'text';
     const DUMP = 'dump';
     const KEYS = 'keys';
 
@@ -27,8 +27,8 @@ class Factory
                 return new Impl\Yaml();
             case self::INI:
                 return new Impl\Ini();
-            case self::TXT:
-                return new Impl\Text();
+            case self::COLUMNS:
+                return new Impl\Columns();
             case self::DUMP:
                 return new Impl\Dump();
             case self::KEYS:

@@ -13,5 +13,5 @@ class Dump extends AbstractWriter
     public function write($value)
     {
         fwrite($this->outputStream, Debug::dump($value));
-   }
+    }
 }

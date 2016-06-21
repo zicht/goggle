@@ -8,6 +8,7 @@ namespace Zicht\ConfigTool\Writer;
 abstract class AbstractWriter implements WriterInterface
 {
     protected $outputStream;
+    protected $properties;
 
     public function setOutput($outputStream)
     {

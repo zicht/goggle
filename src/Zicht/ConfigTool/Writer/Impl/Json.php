@@ -12,7 +12,7 @@ class Json extends AbstractWriter
 {
     public function write($value)
     {
-        fwrite($this->outputStream, json_encode($value, JSON_PRETTY_PRINT));
+        fwrite($this->outputStream, json_encode($value, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
         fwrite($this->outputStream, "\n");
     }
 }

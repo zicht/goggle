@@ -13,6 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Zicht\ConfigTool\Path\Walker;
 use Zicht\ConfigTool\Loader;
 use Zicht\ConfigTool\Writer;
+use Zicht\ConfigTool\Filter;
 
 class GetCommand extends Command
 {
@@ -24,6 +25,8 @@ class GetCommand extends Command
             ->addArgument('file', InputArgument::REQUIRED, 'The file to read')
             ->addArgument('path', InputArgument::IS_ARRAY, 'Config path')
             ->addOption('out', 'o', InputOption::VALUE_REQUIRED, 'Output format', 'text')
+            ->addOption('each', 'e', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Path to iterate over', [])
+            ->addOption('property', 'p', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Properties to output', [])
             ->addOption('type', 't', InputOption::VALUE_REQUIRED, 'Input format', null)
         ;
     }
@@ -45,9 +48,21 @@ class GetCommand extends Command
         $writer = Writer\Factory::createWriter($input->getOption('out'));
 
         $writer->setOutput(fopen('php://stdout', 'w'));
-        $writer->write(
-            (new Walker($loader->load()))
-                ->traverse($input->getArgument('path'))
-        );
+        $filter = new Filter\PropertyFilter((array)$input->getOption('property'));
+        if ($input->getOption('each')) {
+            $r = [];
+
+            foreach ((new Walker($loader->load()))->traverse($input->getOption('each')) as $k => $v) {
+                $r[$k] = $filter->filter((new Walker($v))->traverse($input->getArgument('path')));
+            }
+            $writer->write($r);
+        } else {
+            $writer->write(
+                $filter->filter(
+                    (new Walker($loader->load()))
+                        ->traverse($input->getArgument('path'))
+                )
+            );
+        }
     }
 }

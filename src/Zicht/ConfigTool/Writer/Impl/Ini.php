@@ -10,4 +10,6 @@ use Zicht\ConfigTool\Writer\AbstractWriter;
 
 class Ini extends AbstractWriter
 {
+    public function write($value)
+    {}
 }
