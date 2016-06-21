@@ -20,6 +20,7 @@ class GetCommand extends Command
     {
         $this
             ->setName('get')
+            ->setDescription("Get a config value from a file")
             ->addArgument('file', InputArgument::REQUIRED, 'The file to read')
             ->addArgument('path', InputArgument::IS_ARRAY, 'Config path')
             ->addOption('format', '', InputOption::VALUE_REQUIRED, 'Output format', 'text')

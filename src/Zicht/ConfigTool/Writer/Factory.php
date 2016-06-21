@@ -12,6 +12,7 @@ class Factory
     const INI = 'ini';
     const TXT = 'text';
     const DUMP = 'dump';
+    const KEYS = 'keys';
 
     /**
      * @param $type
@@ -30,6 +31,8 @@ class Factory
                 return new Impl\Text();
             case self::DUMP:
                 return new Impl\Dump();
+            case self::KEYS:
+                return new Impl\Keys();
         }
 
         throw new UnknownWriterTypeException("Sorry, writer type {$type} is not something I do");
