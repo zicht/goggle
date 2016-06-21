@@ -10,32 +10,32 @@ class Walker
     public function __construct($value)
     {
         $this->root = $value;
-        $this->ptr =& $this->root;
     }
 
 
     public function traverse($path)
     {
+        $ret = $this->root;
         while ($elementName = array_shift($path)) {
             $position[]= $elementName;
 
-            if (is_object($this->ptr)) {
-                if (isset($this->ptr->$elementName)) {
-                    $this->ptr =& $this->ptr->$elementName;
+            if (is_object($ret)) {
+                if (isset($ret->$elementName)) {
+                    $ret = $ret->$elementName;
                 } else {
                     throw new UndefinedPropertyException($elementName, $position);
                 }
-            } elseif (is_array($this->ptr)) {
-                if (isset($this->ptr[$elementName])) {
-                    $this->ptr =& $this->ptr[$elementName];
+            } elseif (is_array($ret)) {
+                if (isset($ret[$elementName])) {
+                    $ret = $ret[$elementName];
                 } else {
                     throw new UndefinedKeyException($elementName, $position);
                 }
-            } elseif (is_scalar($this->ptr)) {
+            } elseif (is_scalar($ret)) {
                 throw new ValueHasNoPropertiesException($elementName, $position);
             }
         }
 
-        return $this->ptr;
+        return $ret;
     }
 }
