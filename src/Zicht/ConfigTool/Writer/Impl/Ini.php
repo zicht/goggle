@@ -11,5 +11,19 @@ use Zicht\ConfigTool\Writer\AbstractWriter;
 class Ini extends AbstractWriter
 {
     public function write($value)
-    {}
+    {
+        foreach ((array)$value as $k => $v) {
+            if (is_scalar($v)) {
+                fprintf($this->outputStream, "%s = %s\n", $k, $v);
+            } else {
+                fprintf($this->outputStream, "[%s]\n", $k);
+                foreach ((array)$v as $subKey => $subValue) {
+                    if (!is_scalar($subValue)) {
+                        throw new \UnexpectedValueException("Can not serialize a non-scalar in an ini file");
+                    }
+                    fprintf($this->outputStream, "%s = %s\n", $subKey, $subValue);
+                }
+            }
+        }
+    }
 }

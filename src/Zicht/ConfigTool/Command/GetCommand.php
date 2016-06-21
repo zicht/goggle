@@ -23,7 +23,7 @@ class GetCommand extends Command
             ->setName('get')
             ->setDescription("Get a config value from a file")
             ->addArgument('file', InputArgument::REQUIRED, 'The file to read')
-            ->addArgument('path', InputArgument::IS_ARRAY, 'Config path')
+            ->addArgument('path', InputArgument::IS_ARRAY, 'The item to read from the config, i.e. `parameters`')
             ->addOption('out', 'o', InputOption::VALUE_REQUIRED, 'Output format', 'text')
             ->addOption('each', 'e', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Path to iterate over', [])
             ->addOption('property', 'p', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Properties to output', [])
