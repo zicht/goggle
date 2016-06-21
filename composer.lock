@@ -1,0 +1,213 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "a67aaed52f78fd463e8ce5019b7e1e3e",
+    "content-hash": "0c79f65b67ed087d501be4107f333169",
+    "packages": [
+        {
+            "name": "symfony/console",
+            "version": "v3.0.6",
+            "source": {
+                "type": "git",
+                "url": "zichter@dev3:github/symfony/Console.git",
+                "reference": "bacb8eefb3eeba147933ec9eedf105caa2c05838"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "http://remote.satis.dev3.zicht.intern/packages/symfony/Console.git/v3.0.6.zip",
+                "reference": "bacb8eefb3eeba147933ec9eedf105caa2c05838",
+                "shasum": null
+            },
+            "require": {
+                "php": ">=5.5.9",
+                "symfony/polyfill-mbstring": "~1.0"
+            },
+            "require-dev": {
+                "psr/log": "~1.0",
+                "symfony/event-dispatcher": "~2.8|~3.0",
+                "symfony/process": "~2.8|~3.0"
+            },
+            "suggest": {
+                "psr/log": "For using the console logger",
+                "symfony/event-dispatcher": "",
+                "symfony/process": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Console\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Console Component",
+            "homepage": "https://symfony.com",
+            "time": "2016-04-28 09:48:42"
+        },
+        {
+            "name": "symfony/polyfill-mbstring",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "zichter@dev3:github/symfony/polyfill-mbstring.git",
+                "reference": "630ad16fd18f79b367449a0083085f2952242ed9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "http://remote.satis.dev3.zicht.intern/packages/symfony/polyfill-mbstring.git/v1.2.0.zip",
+                "reference": "630ad16fd18f79b367449a0083085f2952242ed9",
+                "shasum": null
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "ext-mbstring": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Mbstring\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for the Mbstring extension",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "mbstring",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "time": "2016-05-18 09:38:54"
+        },
+        {
+            "name": "symfony/yaml",
+            "version": "v3.0.6",
+            "source": {
+                "type": "git",
+                "url": "zichter@dev3:github/symfony/Yaml.git",
+                "reference": "1db631c181b1a3ab01a49d09d24c2cb2f8ec7f54"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "http://remote.satis.dev3.zicht.intern/packages/symfony/Yaml.git/v3.0.6.zip",
+                "reference": "1db631c181b1a3ab01a49d09d24c2cb2f8ec7f54",
+                "shasum": null
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Yaml\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Yaml Component",
+            "homepage": "https://symfony.com",
+            "time": "2016-03-04 07:55:57"
+        },
+        {
+            "name": "zicht/util",
+            "version": "1.7.0",
+            "source": {
+                "type": "svn",
+                "url": "svn://zon/projecten/zicht-libraries/ZichtUtil",
+                "reference": "/tags/1.7.0/@85810"
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "": [
+                        "src/",
+                        "tests/"
+                    ]
+                }
+            },
+            "authors": [
+                {
+                    "name": "Gerard van Helden",
+                    "email": "gerard@zicht.nl"
+                }
+            ],
+            "description": "Low level utility classes",
+            "time": "2016-05-27 16:27:01"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
