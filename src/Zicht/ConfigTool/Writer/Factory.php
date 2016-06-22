@@ -5,17 +5,33 @@
  */
 namespace Zicht\ConfigTool\Writer;
 
+/**
+ * Class Factory
+ */
 class Factory
 {
-    const JSON = 'json';
+    /** YAML output */
     const YAML = 'yaml';
+
+    /** JSON output */
+    const JSON = 'json';
+
+    /** INI-file output */
     const INI = 'ini';
+
+    /** Human-readable text output */
     const COLUMNS = 'text';
+
+    /** Human-readable debugging dump output */
     const DUMP = 'dump';
+
+    /** Only output keys (useful for piping/chaining commands) */
     const KEYS = 'keys';
 
     /**
-     * @param $type
+     * Create a writer for the specified type.
+     *
+     * @param string $type
      * @return WriterInterface
      */
     public static function createWriter($type)

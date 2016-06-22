@@ -8,8 +8,14 @@ namespace Zicht\ConfigTool\Writer\Impl;
 
 use Zicht\ConfigTool\Writer\AbstractWriter;
 
+/**
+ * Writes the value as an ini file
+ */
 class Ini extends AbstractWriter
 {
+    /**
+     * @{inheritDoc}
+     */
     public function write($value)
     {
         foreach ((array)$value as $k => $v) {

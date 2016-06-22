@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a67aaed52f78fd463e8ce5019b7e1e3e",
-    "content-hash": "0c79f65b67ed087d501be4107f333169",
+    "hash": "3321fd93bd7d8d25616a8aba8a372dd0",
+    "content-hash": "3ac178e4d969b18a2f94c93a42e06dd5",
     "packages": [
         {
             "name": "symfony/console",
@@ -123,6 +123,68 @@
                 "shim"
             ],
             "time": "2016-05-18 09:38:54"
+        },
+        {
+            "name": "symfony/var-dumper",
+            "version": "v3.0.6",
+            "source": {
+                "type": "git",
+                "url": "zichter@dev3:github/symfony/var-dumper.git",
+                "reference": "0812546c70ba5aa592b720f752042d85353e1dae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "http://remote.satis.dev3.zicht.intern/packages/symfony/var-dumper.git/v3.0.6.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "php": ">=5.5.9",
+                "symfony/polyfill-mbstring": "~1.0"
+            },
+            "require-dev": {
+                "twig/twig": "~1.20|~2.0"
+            },
+            "suggest": {
+                "ext-symfony_debug": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "Resources/functions/dump.php"
+                ],
+                "psr-4": {
+                    "Symfony\\Component\\VarDumper\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony mechanism for exploring and dumping PHP variables",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "debug",
+                "dump"
+            ],
+            "time": "2016-04-25 11:17:47"
         },
         {
             "name": "symfony/yaml",

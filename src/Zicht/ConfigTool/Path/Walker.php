@@ -5,14 +5,30 @@
  */
 namespace Zicht\ConfigTool\Path;
 
+/**
+ * Class Walker
+ *
+ * Traverses through an object graph using the specified path.
+ */
 class Walker
 {
+    /**
+     * Constructor
+     *
+     * @param mixed $value
+     */
     public function __construct($value)
     {
         $this->root = $value;
     }
 
 
+    /**
+     * Find the value at the given path
+     *
+     * @param string[] $path
+     * @return mixed
+     */
     public function traverse($path)
     {
         $ret = $this->root;

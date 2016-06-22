@@ -5,6 +5,9 @@
  */
 namespace Zicht\ConfigTool\Writer;
 
+/**
+ * Thrown when the writer requested is unknown or unconfigured
+ */
 class UnknownWriterTypeException extends \UnexpectedValueException
 {
 }

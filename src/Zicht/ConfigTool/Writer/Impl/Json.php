@@ -8,8 +8,14 @@ namespace Zicht\ConfigTool\Writer\Impl;
 
 use Zicht\ConfigTool\Writer\AbstractWriter;
 
+/**
+ * Writes the data as formatted JSON
+ */
 class Json extends AbstractWriter
 {
+    /**
+     * @return void
+     */
     public function write($value)
     {
         fwrite($this->outputStream, json_encode($value, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));

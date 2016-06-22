@@ -15,8 +15,14 @@ use Zicht\ConfigTool\Loader;
 use Zicht\ConfigTool\Writer;
 use Zicht\ConfigTool\Filter;
 
+/**
+ * Gets a value from a config file and outputs it using any supported format
+ */
 class GetCommand extends Command
 {
+    /**
+     * @{inheritDoc}
+     */
     protected function configure()
     {
         $this
@@ -26,11 +32,15 @@ class GetCommand extends Command
             ->addArgument('path', InputArgument::IS_ARRAY, 'The item to read from the config, i.e. `parameters`')
             ->addOption('out', 'o', InputOption::VALUE_REQUIRED, 'Output format', 'text')
             ->addOption('each', 'e', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Path to iterate over', [])
-            ->addOption('property', 'p', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Properties to output', [])
+            ->addOption('keys', 'k', InputOption::VALUE_NONE, 'Add key filter (i.e.: show keys too)')
+            ->addOption('property', 'p', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Add property filter', [])
             ->addOption('type', 't', InputOption::VALUE_REQUIRED, 'Input format', null)
         ;
     }
 
+    /**
+     * @{inheritDoc}
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $file = $input->getArgument('file');
@@ -53,10 +63,15 @@ class GetCommand extends Command
         $writer = Writer\Factory::createWriter($input->getOption('out'));
 
         $writer->setOutput(fopen('php://stdout', 'w'));
-        $filter = new Filter\PropertyFilter((array)$input->getOption('property'));
+        $filter = new Filter\Chain();
+        if ($input->getOption('keys')) {
+            $filter = new Filter\Keys();
+        }
+        if ($properties = $input->getOption('property')) {
+            $filter = new Filter\Properties($properties);
+        }
         if ($input->getOption('each')) {
             $r = [];
-
             foreach ((new Walker($loader->load()))->traverse($input->getOption('each')) as $k => $v) {
                 $r[$k] = $filter->filter((new Walker($v))->traverse($input->getArgument('path')));
             }

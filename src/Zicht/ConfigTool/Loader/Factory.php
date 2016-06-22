@@ -5,12 +5,26 @@
  */
 namespace Zicht\ConfigTool\Loader;
 
+/**
+ * Factory for different loader types.
+ */
 class Factory
 {
-    const JSON = 'json';
+    /** YAML format */
     const YAML = 'yaml';
+
+    /** JSON format */
     const INI = 'ini';
 
+    /** INI format */
+    const JSON = 'json';
+
+    /**
+     * Try to guess a file type based on its name
+     *
+     * @param string $file
+     * @return null|string
+     */
     public static function guessType($file)
     {
         $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
@@ -32,7 +46,9 @@ class Factory
 
 
     /**
-     * @param $type
+     * Create a loader for the specified type
+     *
+     * @param string $type
      * @return LoaderInterface
      */
     public static function createLoader($type)

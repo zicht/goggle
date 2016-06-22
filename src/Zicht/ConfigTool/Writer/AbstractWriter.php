@@ -5,11 +5,17 @@
  */
 namespace Zicht\ConfigTool\Writer;
 
+/**
+ * Base writer class.
+ */
 abstract class AbstractWriter implements WriterInterface
 {
     protected $outputStream;
     protected $properties;
 
+    /**
+     * @{inheritDoc}
+     */
     public function setOutput($outputStream)
     {
         $this->outputStream = $outputStream;

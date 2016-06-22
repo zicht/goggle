@@ -8,8 +8,14 @@ namespace Zicht\ConfigTool\Writer\Impl;
 use Symfony\Component\Yaml\Yaml as YamlWriter;
 use Zicht\ConfigTool\Writer\AbstractWriter;
 
+/**
+ * Write data as yaml
+ */
 class Yaml extends AbstractWriter
 {
+    /**
+     * @{inheritDoc}
+     */
     public function write($value)
     {
         fwrite($this->outputStream, YamlWriter::dump($value));

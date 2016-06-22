@@ -7,8 +7,14 @@ namespace Zicht\ConfigTool\Writer\Impl;
 
 use Zicht\ConfigTool\Writer\AbstractWriter;
 
+/**
+ * Columns output: writes all values as a tabular layout
+ */
 class Columns extends AbstractWriter
 {
+    /**
+     * @{inheritDoc}
+     */
     public function write($value)
     {
         foreach ((array)$value as $row) {
