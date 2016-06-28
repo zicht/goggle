@@ -11,7 +11,7 @@ class Chain implements FilterInterface
     /**
      * @var FilterInterface[]
      */
-    protected $filters;
+    protected $filters = [];
 
     /**
      * Filter the specified value through all child filters.
