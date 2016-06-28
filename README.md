@@ -1,4 +1,16 @@
- Zicht configtool #
+# Goggle #
+
+```plain
+      /)        /)
+     /__   ___/
+    (_._)-(_._)
+```
+
+An infamous programmer once said: Not to be confused with Google. That's me. Google finds anything, Goggle will look at anything.
+
+Nearly anything ;)
+
+## What is it? ##
 
 A command line tool to easily read values from config files and output them in several different formats.
 
