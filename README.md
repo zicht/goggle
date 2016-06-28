@@ -6,7 +6,7 @@
     (_._)-(_._)
 ```
 
-An infamous programmer once said: Not to be confused with Google. That's me. Google finds anything, Goggle will look at anything.
+Someone once said: Not to be confused with Google. That wass me. Google finds anything, Goggle will look at anything.
 
 Nearly anything ;)
 
