@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3321fd93bd7d8d25616a8aba8a372dd0",
-    "content-hash": "3ac178e4d969b18a2f94c93a42e06dd5",
+    "hash": "76c73496305f76135241665d70dbc29f",
+    "content-hash": "ecb11910265e1c1e36f3ce89b930bac0",
     "packages": [
         {
             "name": "symfony/console",
@@ -135,7 +135,7 @@
             "dist": {
                 "type": "zip",
                 "url": "http://remote.satis.dev3.zicht.intern/packages/symfony/var-dumper.git/v3.0.6.zip",
-                "reference": null,
+                "reference": "0812546c70ba5aa592b720f752042d85353e1dae",
                 "shasum": null
             },
             "require": {
@@ -233,35 +233,6 @@
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
             "time": "2016-03-04 07:55:57"
-        },
-        {
-            "name": "zicht/util",
-            "version": "1.7.0",
-            "source": {
-                "type": "svn",
-                "url": "svn://zon/projecten/zicht-libraries/ZichtUtil",
-                "reference": "/tags/1.7.0/@85810"
-            },
-            "require": {
-                "php": ">=5.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "": [
-                        "src/",
-                        "tests/"
-                    ]
-                }
-            },
-            "authors": [
-                {
-                    "name": "Gerard van Helden",
-                    "email": "gerard@zicht.nl"
-                }
-            ],
-            "description": "Low level utility classes",
-            "time": "2016-05-27 16:27:01"
         }
     ],
     "packages-dev": [],

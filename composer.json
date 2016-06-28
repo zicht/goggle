@@ -1,9 +1,8 @@
 {
-    "name": "zicht/config-tool",
+    "name": "zicht/goggle",
     "require": {
         "symfony/console": "^3.0",
         "symfony/yaml": "^3.0",
-        "zicht/util": "^1.7",
         "symfony/var-dumper": "^3.0"
     },
     "autoload": {"psr-0": {"": "src/"}}

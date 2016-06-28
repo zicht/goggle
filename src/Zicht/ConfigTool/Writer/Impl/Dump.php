@@ -7,7 +7,6 @@ namespace Zicht\ConfigTool\Writer\Impl;
 
 use Symfony\Component\VarDumper\VarDumper;
 use Zicht\ConfigTool\Writer\AbstractWriter;
-use Zicht\Util\Debug;
 
 /**
  * Dumps an object structure using the Symfony VarDumper.
