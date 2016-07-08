@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "76c73496305f76135241665d70dbc29f",
-    "content-hash": "ecb11910265e1c1e36f3ce89b930bac0",
+    "hash": "0cd1f2a4c5150becfa6ab6b48fac0301",
+    "content-hash": "9a32eba51b810f793400fdf2df893e1b",
     "packages": [
         {
             "name": "symfony/console",
@@ -188,25 +188,25 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.0.6",
+            "version": "v2.8.6",
             "source": {
                 "type": "git",
                 "url": "zichter@dev3:github/symfony/Yaml.git",
-                "reference": "1db631c181b1a3ab01a49d09d24c2cb2f8ec7f54"
+                "reference": "812d191f3bde0058000e428fe30c344d5aa9f0f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "http://remote.satis.dev3.zicht.intern/packages/symfony/Yaml.git/v3.0.6.zip",
-                "reference": "1db631c181b1a3ab01a49d09d24c2cb2f8ec7f54",
+                "url": "http://remote.satis.dev3.zicht.intern/packages/symfony/Yaml.git/v2.8.6.zip",
+                "reference": null,
                 "shasum": null
             },
             "require": {
-                "php": ">=5.5.9"
+                "php": ">=5.3.9"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "2.8-dev"
                 }
             },
             "autoload": {
@@ -232,7 +232,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-03-04 07:55:57"
+            "time": "2016-03-24 13:09:50"
         }
     ],
     "packages-dev": [],
