@@ -25,7 +25,9 @@ class Application extends Console\Application
 
         $this->addCommands(
             [
-                new Command\GetCommand()
+                new Command\GetCommand(),
+                new Command\ChainCommand(),
+                new Command\ProcessCommand()
             ]
         );
     }

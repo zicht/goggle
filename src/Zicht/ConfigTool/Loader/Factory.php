@@ -57,6 +57,7 @@ class Factory
             case self::JSON:
                 return new Impl\Json();
             case self::YAML:
+            case 'yml':
                 return new Impl\Yaml();
             case self::INI:
                 return new Impl\Ini();

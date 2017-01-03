@@ -6,15 +6,22 @@
     (_._)-(_._)
 ```
 
-Someone once said: Not to be confused with Google. That wass me. Google finds anything, Goggle will look at anything.
+Not to be confused with Google. Google finds anything, Goggle will help you look at anything.
 
 Nearly anything ;)
 
 ## What is it? ##
 
-A command line tool to easily read values from config files and output them in several different formats.
+A command line tool to easily read values from config files and output them in several different formats, with chaining through piping in mind.
+
+## Supported formats ##
+
+* Input: `json`, `yaml` and `ini`
+* Output: `json`, `yaml`, `ini`, `text` (column based)
 
 ## Usage ##
+
+### Read a 'deep' value from a configuration file
 
 ```
 goggle get FILE element0..elementN [--format=FORMAT] [--each=e1 [--each e2 [...]]] [--property p1 [--property p2 [...]]]
@@ -28,7 +35,7 @@ Read value FILE from path `element0..elementN` and output it in the specified fo
 Read the database host name from the following file and output it in JSON:
 
 ```
-goggle get app/config/parameters_staging.yml parameters database_host --format=json
+cat app/config/parameters_staging.yml | goggle get -t yaml parameters database_host -o json
 ```
 
 Given the following file:
@@ -45,13 +52,13 @@ This would output:
 See all values available in a composer lock file
 
 ```
-goggle get composer.lock --format=dump
+goggle get -i composer.lock --format=dump
 ```
 
 Or read all package names and versions from a composer lockfile:
 
 ```
-goggle get composer.lock --each packages -p name -p version
+goggle get -i composer.lock | goggle process packages -p name -p version
 ``` 
 
 ### Example 3 ###

@@ -39,13 +39,30 @@ class ProcessCommand extends IOCommand
         $loader = $this->getLoader($input);
         $writer = $this->getWriter($input);
 
-        $data = iter\reduce(
-            $input->getArgument('path'),
-            function ($value, $prop) {
-                return is_object($value) ? $value->$prop : $value[$prop];
-            },
-            $loader->load()
-        );
-        $writer->write($data);
+        $instructions = $input->getArgument('instructions');
+
+        $shift = function () use (&$instructions) {
+            return array_shift($instructions);
+        };
+
+        $data = iter\iterable($loader->load());
+        while ($instruction = $shift()) {
+            switch ($instruction) {
+                case 'map':
+                case 'mapBy':
+                    $func = new \ReflectionFunction("Zicht\\Itertools\\" . $instruction);
+                    $data = $func->invoke($shift(), $data);
+                    break;
+                case 'keys':
+                case 'count':
+                case 'values':
+                    $data = iter\iterable($data)->$instruction();
+                    break;
+                default:
+                    throw new \InvalidArgumentException("Undefined process token `$instruction`\n");
+            }
+        }
+
+        $writer->write($data->toArray());
     }
 }

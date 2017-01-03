@@ -34,13 +34,14 @@ class GetCommand extends IOCommand
         $loader = $this->getLoader($input);
         $writer = $this->getWriter($input);
 
-        $data = iter\reduce(
-            $input->getArgument('path'),
-            function ($value, $prop) {
-                return is_object($value) ? $value->$prop : $value[$prop];
-            },
-            $loader->load()
+        $writer->write(
+            iter\reduce(
+                $input->getArgument('path'),
+                function ($value, $prop) {
+                    return is_object($value) ? $value->$prop : $value[$prop];
+                },
+                $loader->load()
+            )
         );
-        $writer->write($data);
     }
 }
