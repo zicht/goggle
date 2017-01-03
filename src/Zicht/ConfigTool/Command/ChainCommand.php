@@ -18,6 +18,7 @@ class ChainCommand extends IOCommand
 
         $this
             ->setName('chain')
+            ->setDescription("Chain (merge) multiple sets of input together")
             ->addArgument('files', Console\Input\InputArgument::REQUIRED | Console\Input\InputArgument::IS_ARRAY, 'Files to chain');
     }
 
@@ -29,8 +30,21 @@ class ChainCommand extends IOCommand
         $writer->write(
             array_reduce(
                 array_map(
-                    function ($value) {
-                        return Loader\Factory::createLoader(Loader\Factory::guessType($value))->load();
+                    function ($value) use ($input) {
+                        $format = $input->getOption('input-format');
+
+                        if (!$format) {
+                            $format = Loader\Factory::guessType($value);
+                        }
+
+                        $loader = Loader\Factory::createLoader($format);
+                        $fd = fopen($value, 'r');
+                        if (!$fd) {
+                            throw new \InvalidArgumentException("Could not read input file `$value`");
+
+                        }
+                        $loader->setInput($fd);
+                        return $loader->load();
                     },
                     $input->getArgument('files')
                 ),
