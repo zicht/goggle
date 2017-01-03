@@ -11,7 +11,7 @@ use Zicht\Itertools as iter;
 /**
  * Gets a value from a config file and outputs it using any supported format
  */
-class GetCommand extends IOCommand
+class ProcessCommand extends IOCommand
 {
     /**
      * @{inheritDoc}
@@ -21,9 +21,14 @@ class GetCommand extends IOCommand
         parent::configure();
 
         $this
-            ->setName('get')
-            ->setDescription("Get a config value from a file")
-            ->addArgument('path', Console\Input\InputArgument::IS_ARRAY, 'The item to read from the config, i.e. `parameters`');
+            ->setName('process')
+            ->setDescription("Process a data set recursively")
+            ->setHelp(
+                'Each instruction is a certain operation on the data set'
+            )
+            ->addArgument(
+                'instructions', Console\Input\InputArgument::IS_ARRAY, 'The item to read from the config, i.e. `parameters`'
+            );
     }
 
     /**

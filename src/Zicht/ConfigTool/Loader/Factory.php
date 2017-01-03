@@ -64,4 +64,14 @@ class Factory
 
         throw new UnknownLoaderTypeException("Sorry, loader type `{$type}` is unsupported");
     }
+
+    /**
+     * Returns an array of supported types.
+     *
+     * @return array
+     */
+    public static function supportedTypes()
+    {
+        return [self::JSON, self::YAML, self::INI];
+    }
 }
