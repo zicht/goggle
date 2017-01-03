@@ -7,7 +7,7 @@ use Zicht\ConfigTool\Application;
 
 $autoload = array_shift(
     array_filter(
-        [__DIR__ . '/../vendor/autoload.php', __DIR__ . '/../../../autoload.php'], 
+        [__DIR__ . '/../vendor/autoload.php', __DIR__ . '/../../../autoload.php'],
         'is_file'
     )
 );
