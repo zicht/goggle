@@ -5,84 +5,43 @@
  */
 namespace Zicht\ConfigTool\Command;
 
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Output\OutputInterface;
-use Zicht\ConfigTool\Path\Walker;
-use Zicht\ConfigTool\Loader;
-use Zicht\ConfigTool\Writer;
-use Zicht\ConfigTool\Filter;
+use Symfony\Component\Console;
+use Zicht\Itertools as iter;
 
 /**
  * Gets a value from a config file and outputs it using any supported format
  */
-class GetCommand extends Command
+class GetCommand extends IOCommand
 {
     /**
      * @{inheritDoc}
      */
     protected function configure()
     {
+        parent::configure();
+
         $this
             ->setName('get')
             ->setDescription("Get a config value from a file")
-            ->addArgument('file', InputArgument::REQUIRED, 'The file to read')
-            ->addArgument('path', InputArgument::IS_ARRAY, 'The item to read from the config, i.e. `parameters`')
-            ->addOption('out', 'o', InputOption::VALUE_REQUIRED, 'Output format', 'text')
-            ->addOption('each', 'e', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Path to iterate over', [])
-            ->addOption('keys', 'k', InputOption::VALUE_NONE, 'Add key filter (i.e.: show keys too)')
-            ->addOption('property', 'p', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Add property filter', [])
-            ->addOption('type', 't', InputOption::VALUE_REQUIRED, 'Input format', null)
-        ;
+            ->addArgument('path', Console\Input\InputArgument::IS_ARRAY, 'The item to read from the config, i.e. `parameters`');
     }
 
     /**
      * @{inheritDoc}
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(Console\Input\InputInterface $input, Console\Output\OutputInterface $output)
     {
-        $file = $input->getArgument('file');
+        $loader = $this->getLoader($input);
+        $writer = $this->getWriter($input);
 
-        if ($file === '-') {
-            $file = 'php://stdin';
-        }
-
-        if (!($type = $input->getOption('type'))) {
-            $type = Loader\Factory::guessType($file);
-        }
-
-        $loader = Loader\Factory::createLoader($type);
-        $inputStream = fopen($file, 'r');
-        if (!$inputStream) {
-            throw new \RuntimeException("Could not open input");
-        }
-        $loader->setInput($inputStream);
-
-        $writer = Writer\Factory::createWriter($input->getOption('out'));
-
-        $writer->setOutput(fopen('php://stdout', 'w'));
-        $filter = new Filter\Chain();
-        if ($input->getOption('keys')) {
-            $filter = new Filter\Keys();
-        }
-        if ($properties = $input->getOption('property')) {
-            $filter = new Filter\Properties($properties);
-        }
-        if ($input->getOption('each')) {
-            $r = [];
-            foreach ((new Walker($loader->load()))->traverse($input->getOption('each')) as $k => $v) {
-                $r[$k] = $filter->filter((new Walker($v))->traverse($input->getArgument('path')));
-            }
-            $writer->write($r);
-        } else {
-            $writer->write(
-                $filter->filter(
-                    (new Walker($loader->load()))
-                        ->traverse($input->getArgument('path'))
-                )
-            );
-        }
+        $writer->write(
+            iter\reduce(
+                $input->getArgument('path'),
+                function ($value, $prop) {
+                    return is_object($value) ? $value->$prop : $value[$prop];
+                },
+                $loader->load()
+            )
+        );
     }
 }

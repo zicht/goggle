@@ -1,0 +1,7 @@
+[
+    {"name": "Bart Simpson", "age": "10", "role": "son", "gender": "male"},
+    {"name": "Lisa Simpson", "age": "9", "role": "daughter", "gender": "female"},
+    {"name": "Maggie Simpson", "age": "2", "role": "daughter", "gender": "female"},
+    {"name": "Homer Simpson", "age": "45", "role": "father", "gender": "male"},
+    {"name": "Marge Simpson", "age": "43", "role": "mother", "gender": "female"}
+]
