@@ -2,6 +2,7 @@
     "name": "zicht/goggle",
     "require": {
         "symfony/console": "^3.0",
+        "symfony/expression-language": "^2",
         "symfony/var-dumper": "^3.0",
         "symfony/yaml": "^2.7",
         "zicht/itertools": "^2.8"

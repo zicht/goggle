@@ -6,6 +6,7 @@
 namespace Zicht\ConfigTool\Command;
 
 use Symfony\Component\Console;
+use Symfony\Component\DependencyInjection\ExpressionLanguage;
 use Zicht\Itertools as iter;
 
 /**
@@ -64,6 +65,17 @@ class ProcessCommand extends IOCommand
                                 },
                                 $record
                             )->toArray();
+                        },
+                        $data
+                    );
+                    break;
+                case 'filter':
+                    // this can probably be done more efficiently than
+                    $expr = $shift();
+                    $lang = (new ExpressionLanguage())->parse($expr, ['item']);
+                    $data = iter\filter(
+                        function ($data) use ($lang, $expr) {
+                            return $lang->getNodes()->evaluate([], ['item' => $data]);
                         },
                         $data
                     );

@@ -125,6 +125,14 @@ class FeatureContext implements Context
         echo $this->response;
     }
 
+    /**
+     * @When /^I execute goggle with arguments$/
+     */
+    public function iExecuteGoggleWithArguments1(PyStringNode $string)
+    {
+        return $this->iExecuteGoggleWithArguments(trim($string->getRaw()));
+    }
+
 
     protected function filepath($file)
     {
