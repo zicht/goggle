@@ -4,8 +4,9 @@
  * @copyright Zicht Online <http://zicht.nl>
  */
 use Zicht\ConfigTool\Application;
+use Zicht\Itertools as iter;
 
-$autoload = array_shift(
+$autoload = current(
     array_filter(
         [__DIR__ . '/../vendor/autoload.php', __DIR__ . '/../../../autoload.php'],
         'is_file'

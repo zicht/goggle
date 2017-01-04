@@ -22,6 +22,7 @@ class GetCommand extends IOCommand
 
         $this
             ->setName('get')
+            ->addOption('strict', '', Console\Input\InputOption::VALUE_NONE)
             ->setDescription("Get a config value from a file")
             ->addArgument('path', Console\Input\InputArgument::IS_ARRAY, 'The item to read from the config, i.e. `parameters`');
     }
@@ -37,8 +38,18 @@ class GetCommand extends IOCommand
         $writer->write(
             iter\reduce(
                 $input->getArgument('path'),
-                function ($value, $prop) {
-                    return is_object($value) ? $value->$prop : $value[$prop];
+                function ($value, $prop) use($input) {
+                    if (is_scalar($value)) {
+                        if ($input->getOption('strict')) {
+                            throw new \InvalidArgumentException(sprintf("Can not get property `%s` of scalar type `%s` (%s)", $prop, gettype($value), $value));
+                        }
+                        return null;
+                    }
+                    return
+                        is_object($value)
+                            ? (isset($value->$prop) ? $value->$prop : null)
+                            : (isset($value[$prop]) ? $value[$prop] : null)
+                    ;
                 },
                 $loader->load()
             )

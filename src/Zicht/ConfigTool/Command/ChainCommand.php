@@ -25,6 +25,7 @@ class ChainCommand extends IOCommand
         $this
             ->setName('chain')
             ->setDescription("Chain (merge) multiple sets of input together")
+            ->addOption('list', 'l', Console\Input\InputOption::VALUE_OPTIONAL, 'Wether to wrap each argument\'s result as a list (i.e., consider the contents of the file the first element of a list)')
             ->addArgument('files', Console\Input\InputArgument::REQUIRED | Console\Input\InputArgument::IS_ARRAY, 'Files to chain');
     }
 
@@ -52,7 +53,12 @@ class ChainCommand extends IOCommand
                             throw new \InvalidArgumentException("Could not read input file `$value`");
                         }
                         $loader->setInput($fd);
-                        return $loader->load();
+
+                        $ret = $loader->load();
+                        if ($input->getOption('list')) {
+                            $ret = [$ret];
+                        }
+                        return $ret;
                     },
                     $input->getArgument('files')
                 ),
