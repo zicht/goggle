@@ -10,6 +10,14 @@ use Symfony\Component\Console;
 use Zicht\ConfigTool\Loader;
 use Zicht\ConfigTool\Writer;
 
+/**
+ * Base command for common handling of in- and output using the following options:
+ *
+ * * [--input|-i] File to read
+ * * [--output|-f] File to output to
+ * * [--input-format|t] Input format ("type") to read
+ * * [--output-format|o] Output format to write
+ */
 abstract class IOCommand extends Console\Command\Command
 {
     /**

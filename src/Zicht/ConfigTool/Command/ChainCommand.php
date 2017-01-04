@@ -10,8 +10,14 @@ use Symfony\Component\Console;
 
 use Zicht\ConfigTool\Loader;
 
+/**
+ * Command to merge multiple files' contents into one.
+ */
 class ChainCommand extends IOCommand
 {
+    /**
+     * @{inheritDoc}
+     */
     protected function configure()
     {
         parent::configure();
@@ -23,6 +29,9 @@ class ChainCommand extends IOCommand
     }
 
 
+    /**
+     * @{inheritDoc}
+     */
     protected function execute(Console\Input\InputInterface $input, Console\Output\OutputInterface $output)
     {
         $writer = $this->getWriter($input);
@@ -41,7 +50,6 @@ class ChainCommand extends IOCommand
                         $fd = fopen($value, 'r');
                         if (!$fd) {
                             throw new \InvalidArgumentException("Could not read input file `$value`");
-
                         }
                         $loader->setInput($fd);
                         return $loader->load();

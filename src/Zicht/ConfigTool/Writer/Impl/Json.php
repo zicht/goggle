@@ -14,7 +14,7 @@ use Zicht\ConfigTool\Writer\AbstractWriter;
 class Json extends AbstractWriter
 {
     /**
-     * @return void
+     * @{inheritDoc}
      */
     public function write($value)
     {

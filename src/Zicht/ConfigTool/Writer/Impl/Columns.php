@@ -18,12 +18,22 @@ class Columns extends AbstractWriter
     public function write($value)
     {
         foreach ((array)$value as $row) {
-            fprintf($this->outputStream, "%s\n", join("\t", array_map(function($v) {
-                if (!is_scalar($v)) {
-                    return '<' . gettype($v) . '>';
-                }
-                return $v;
-            }, (array)$row)));
+            fprintf(
+                $this->outputStream,
+                "%s\n",
+                join(
+                    "\t",
+                    array_map(
+                        function ($v) {
+                            if (!is_scalar($v)) {
+                                return '<' . gettype($v) . '>';
+                            }
+                            return $v;
+                        },
+                        (array)$row
+                    )
+                )
+            );
         }
     }
 }

@@ -32,7 +32,6 @@ class Application extends Console\Application
         );
     }
 
-
     /**
      * @{inheritDoc}
      */
