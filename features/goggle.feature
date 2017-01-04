@@ -111,3 +111,19 @@ Feature: Goggle command line usage
     son
     """
 
+  Scenario: Filter
+    Given there is a file named "simpsons.json" with contents from "simpsons.json"
+    When I execute goggle with arguments
+    """
+    process -i simpsons.json filter 'item["age"] > 40 and item["age"] < 44' fields role
+    """"
+    Then I should see formatted json
+    """
+    {
+        "4": {
+            "role": "mother"
+        }
+    }
+    """
+
+
