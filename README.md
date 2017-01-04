@@ -54,8 +54,6 @@ Or only get the one for `symfony/symfony`:
 goggle get -i ./composer.lock packages | goggle process -t json fields name version authors | goggle process -t json mapBy name | goggle get "symfony/symfony"
 ```
 
-
-
 ### Example 2 ###
 Read the database host name from the following file and output it in JSON:
 
@@ -97,4 +95,8 @@ or:
 ```
 goggle get - -t yaml -o json < ./app/config/parameters.yml
 ```
+
+## More documentation by example ##
+
+Read the behat features to see more possibilities.
 
