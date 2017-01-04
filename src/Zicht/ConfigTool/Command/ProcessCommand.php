@@ -68,10 +68,33 @@ class ProcessCommand extends IOCommand
                         $data
                     );
                     break;
+                case 'unique':
+                    $data = iter\unique($shift(), $data);
+                    break;
+                case 'ksort':
+                    $data = iter\sorted(
+                        function ($value, $key) {
+                            return $key;
+                        },
+                        $data
+                    );
+                    break;
+                case 'sort':
+                    $data = iter\sorted(
+                        function ($value) {
+                            return $value;
+                        },
+                        $data
+                    );
+                    break;
+                case 'sortBy':
+                    $data = iter\sorted($shift(), $data);
+                    break;
                 case 'map':
+                    $data = iter\map($shift(), $data);
+                    break;
                 case 'mapBy':
-                    $func = new \ReflectionFunction("Zicht\\Itertools\\" . $instruction);
-                    $data = $func->invoke($shift(), $data);
+                    $data = iter\mapBy($shift(), $data);
                     break;
                 case 'keys':
                 case 'count':
