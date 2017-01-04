@@ -57,11 +57,22 @@ class Factory
             case self::JSON:
                 return new Impl\Json();
             case self::YAML:
+            case 'yml':
                 return new Impl\Yaml();
             case self::INI:
                 return new Impl\Ini();
         }
 
         throw new UnknownLoaderTypeException("Sorry, loader type `{$type}` is unsupported");
+    }
+
+    /**
+     * Returns an array of supported types.
+     *
+     * @return array
+     */
+    public static function supportedTypes()
+    {
+        return [self::JSON, self::YAML, self::INI];
     }
 }

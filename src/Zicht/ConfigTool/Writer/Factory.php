@@ -25,9 +25,6 @@ class Factory
     /** Human-readable debugging dump output */
     const DUMP = 'dump';
 
-    /** Only output keys (useful for piping/chaining commands) */
-    const KEYS = 'keys';
-
     /**
      * Create a writer for the specified type.
      *
@@ -47,10 +44,18 @@ class Factory
                 return new Impl\Columns();
             case self::DUMP:
                 return new Impl\Dump();
-            case self::KEYS:
-                return new Impl\Keys();
         }
 
         throw new UnknownWriterTypeException("Sorry, writer type {$type} is not something I do");
+    }
+
+    /**
+     * Returns an array of supported output formats
+     *
+     * @return array
+     */
+    public static function supportedTypes()
+    {
+        return [self::YAML, self::JSON, self::COLUMNS, self::DUMP];
     }
 }
