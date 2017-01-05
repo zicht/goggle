@@ -24,6 +24,12 @@ class Factory
 
     /** Human-readable debugging dump output */
     const DUMP = 'dump';
+    
+    /** Symfony console-style table (primarily human readable) */
+    const TABLE = 'table';
+
+    /** Markdown-style table */
+    const MARKDOWN = 'markdown';
 
     /**
      * Create a writer for the specified type.
@@ -42,6 +48,10 @@ class Factory
                 return new Impl\Ini();
             case self::COLUMNS:
                 return new Impl\Columns();
+            case self::TABLE:
+                return new Impl\ConsoleTable();
+            case self::MARKDOWN:
+                return new Impl\MarkdownTable();
             case self::DUMP:
                 return new Impl\Dump();
         }

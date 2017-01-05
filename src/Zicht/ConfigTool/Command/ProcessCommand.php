@@ -118,6 +118,6 @@ class ProcessCommand extends IOCommand
             }
         }
 
-        $writer->write($data->toArray());
+        $writer->write(iter\iterable($data)->toArray());
     }
 }

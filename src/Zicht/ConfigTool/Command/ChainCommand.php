@@ -58,6 +58,9 @@ class ChainCommand extends IOCommand
                         if ($input->getOption('list')) {
                             $ret = [$ret];
                         }
+                        if (!is_array($ret)) {
+                            throw new \UnexpectedValueException("Loader did not result in an array: {$value}");
+                        }
                         return $ret;
                     },
                     $input->getArgument('files')

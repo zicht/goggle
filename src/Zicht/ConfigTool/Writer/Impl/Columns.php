@@ -10,7 +10,7 @@ use Zicht\ConfigTool\Writer\AbstractWriter;
 /**
  * Columns output: writes all values as a tabular layout
  */
-class Columns extends AbstractWriter
+class Columns extends AbstractTextWriter
 {
     /**
      * @{inheritDoc}
@@ -21,18 +21,7 @@ class Columns extends AbstractWriter
             fprintf(
                 $this->outputStream,
                 "%s\n",
-                join(
-                    "\t",
-                    array_map(
-                        function ($v) {
-                            if (!is_scalar($v)) {
-                                return '<' . gettype($v) . '>';
-                            }
-                            return $v;
-                        },
-                        (array)$row
-                    )
-                )
+                join("\t", self::toScalarValues($row))
             );
         }
     }
