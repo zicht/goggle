@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "deaa048d068e46c1997d004711f75d25",
-    "content-hash": "b2ea5cda6a2e5d4b54f0039890a4d0e1",
+    "hash": "7a53452ba51f64cbe35c5377339e4350",
+    "content-hash": "355573207970f6cd9074eb2994e0da25",
     "packages": [
         {
             "name": "symfony/console",
@@ -77,7 +77,7 @@
             "dist": {
                 "type": "zip",
                 "url": "http://remote.satis.dev3.intern/dist/symfony/expression-language/v2.8.15.zip",
-                "reference": null,
+                "reference": "1bdf6fc66064aba83490473f5b010f422df6b8dc",
                 "shasum": null
             },
             "require": {
@@ -327,6 +327,47 @@
             ],
             "description": "A collection of functions that mirror the Python itertools library",
             "time": "2016-12-20 08:39:36"
+        },
+        {
+            "name": "zicht/util",
+            "version": "1.7.2",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:zicht/util",
+                "reference": "6b0d42b768d9cc287099dbc13a5404c4984f3b00"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "http://satis.dev3.intern/dist/zicht/util/1.7.2.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "": [
+                        "src/",
+                        "tests/"
+                    ]
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gerard van Helden",
+                    "email": "gerard@zicht.nl"
+                }
+            ],
+            "description": "Low level utility classes",
+            "time": "2016-11-30 09:09:24"
         }
     ],
     "packages-dev": [
@@ -341,7 +382,7 @@
             "dist": {
                 "type": "zip",
                 "url": "http://remote.satis.dev3.intern/dist/Behat/Behat/v3.2.2.zip",
-                "reference": null,
+                "reference": "30aa3836825416f28581ee55fcfe6a5b0cdeeb85",
                 "shasum": null
             },
             "require": {
@@ -421,7 +462,7 @@
             "dist": {
                 "type": "zip",
                 "url": "http://remote.satis.dev3.intern/dist/Behat/Gherkin/v4.4.5.zip",
-                "reference": null,
+                "reference": "5c14cff4f955b17d20d088dec1bde61c0539ec74",
                 "shasum": null
             },
             "require": {
@@ -484,7 +525,7 @@
             "dist": {
                 "type": "zip",
                 "url": "http://remote.satis.dev3.intern/dist/behat/transliterator/v1.1.0.zip",
-                "reference": null,
+                "reference": "868e05be3a9f25ba6424c2dd4849567f50715003",
                 "shasum": null
             },
             "require": {
@@ -528,7 +569,7 @@
             "dist": {
                 "type": "zip",
                 "url": "http://remote.satis.dev3.intern/dist/symfony/class-loader/v3.2.0.zip",
-                "reference": null,
+                "reference": "f28ae5683057774c8ab69ed83d1a79cfdd5e709d",
                 "shasum": null
             },
             "require": {
@@ -583,7 +624,7 @@
             "dist": {
                 "type": "zip",
                 "url": "http://remote.satis.dev3.intern/dist/symfony/Config/v3.2.0.zip",
-                "reference": null,
+                "reference": "84ed81d3c21ff4127cd55ee325c48b2492a94aef",
                 "shasum": null
             },
             "require": {
@@ -638,7 +679,7 @@
             "dist": {
                 "type": "zip",
                 "url": "http://remote.satis.dev3.intern/dist/symfony/dependency-injection/v3.1.7.zip",
-                "reference": null,
+                "reference": "7117a30b02814c539c943d5bdd0fec66b0d51bf2",
                 "shasum": null
             },
             "require": {
@@ -697,7 +738,7 @@
             "dist": {
                 "type": "zip",
                 "url": "http://remote.satis.dev3.intern/dist/symfony/event-dispatcher/v3.2.0.zip",
-                "reference": null,
+                "reference": "f212b12f154e00e336fefc783116d66d65771e5d",
                 "shasum": null
             },
             "require": {
@@ -756,7 +797,7 @@
             "dist": {
                 "type": "zip",
                 "url": "http://remote.satis.dev3.intern/dist/symfony/Filesystem/v3.2.0.zip",
-                "reference": null,
+                "reference": "da771cd6d30d70d32bddb65e581652986fc2ea79",
                 "shasum": null
             },
             "require": {
@@ -804,7 +845,7 @@
             "dist": {
                 "type": "zip",
                 "url": "http://remote.satis.dev3.intern/dist/symfony/Translation/v3.2.0.zip",
-                "reference": null,
+                "reference": "902fa47aa4468c2a207f7d98e6571b160827a888",
                 "shasum": null
             },
             "require": {
@@ -867,7 +908,7 @@
             "dist": {
                 "type": "zip",
                 "url": "http://remote.satis.dev3.intern/dist/webmozart/assert/1.2.0.zip",
-                "reference": null,
+                "reference": "2db61e59ff05fe5126d152bd0655c9ea113e550f",
                 "shasum": null
             },
             "require": {

@@ -38,7 +38,7 @@ class GetCommand extends IOCommand
         $writer->write(
             iter\reduce(
                 $input->getArgument('path'),
-                function ($value, $prop) use($input) {
+                function ($value, $prop) use ($input) {
                     if (is_scalar($value)) {
                         if ($input->getOption('strict')) {
                             throw new \InvalidArgumentException(sprintf("Can not get property `%s` of scalar type `%s` (%s)", $prop, gettype($value), $value));

@@ -5,7 +5,8 @@
         "symfony/expression-language": "^2",
         "symfony/var-dumper": "^3.0",
         "symfony/yaml": "^2.7",
-        "zicht/itertools": "^2.8"
+        "zicht/itertools": "^2.8",
+        "zicht/util": "^1.7"
     },
     "autoload": {"psr-0": {"": "src/"}},
     "bin": ["bin/goggle"],
