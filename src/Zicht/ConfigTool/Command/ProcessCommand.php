@@ -51,7 +51,7 @@ class ProcessCommand extends IOCommand
         while ($instruction = $shift()) {
             switch ($instruction) {
                 case 'fields':
-                    // eat up the rest of the arguments
+                    // eat up the remainder of the arguments
                     $args = [];
                     while ($arg = $shift()) {
                         $args[] = $arg;
@@ -107,6 +107,10 @@ class ProcessCommand extends IOCommand
                     break;
                 case 'mapBy':
                     $data = iter\mapBy($shift(), $data);
+                    break;
+                case 'zip':
+                    $iterable = iter\iterable($data);
+                    $data = iter\zip($iterable->keys(), $iterable->values());
                     break;
                 case 'keys':
                 case 'count':
