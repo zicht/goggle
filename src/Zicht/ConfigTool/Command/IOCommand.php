@@ -26,6 +26,8 @@ abstract class IOCommand extends Console\Command\Command
     protected function configure()
     {
         $this
+            ->addOption('inline', 'x', Console\Input\InputOption::VALUE_NONE, 'Use inputfile as output file. Conflicts with -f, implies -b')
+            ->addOption('buffer', 'b', Console\Input\InputOption::VALUE_NONE, "Buffer input. Useful if you want to write to the same file that you're reading")
             ->addOption('input', 'i', Console\Input\InputOption::VALUE_REQUIRED, 'The file to read (default is STDIN)', 'php://stdin')
             ->addOption('output', 'f', Console\Input\InputOption::VALUE_REQUIRED, 'The file to write to', 'php://stdout')
             ->addOption('input-format', 't', Console\Input\InputOption::VALUE_REQUIRED, 'Input format (one of: ' . join(', ', Loader\Factory::supportedTypes()) . ')', null)
@@ -57,6 +59,13 @@ abstract class IOCommand extends Console\Command\Command
         if (!$inputStream) {
             throw new \RuntimeException("Could not open input");
         }
+
+        if ($input->getOption('buffer') || $input->getOption('inline')) {
+            $tmp = fopen('php://memory', 'rw');
+            fwrite($tmp, stream_get_contents($inputStream));
+            fseek($tmp, 0);
+            $inputStream = $tmp;
+        }
         $loader->setInput($inputStream);
         return $loader;
     }
@@ -69,8 +78,16 @@ abstract class IOCommand extends Console\Command\Command
      */
     protected function getWriter(Console\Input\InputInterface $input)
     {
+        $outputFile = $input->getOption('output');
+        if ($input->getOption('inline')) {
+            if ($outputFile !== $this->getDefinition()->getOption('output')->getDefault()) {
+                throw new \InvalidArgumentException("You cannot specify both --inline (-x) and --output (-f)");
+            }
+            $outputFile = $input->getOption('input');
+        }
+
         $writer = Writer\Factory::createWriter($input->getOption('output-format'));
-        $writer->setOutput(fopen($input->getOption('output'), 'w'));
+        $writer->setOutput(fopen($outputFile, 'w'));
         return $writer;
     }
 }
