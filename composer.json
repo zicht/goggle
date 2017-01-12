@@ -1,12 +1,12 @@
 {
     "name": "zicht/goggle",
     "require": {
-        "symfony/console": "^3.0",
+        "symfony/console": "^2",
         "symfony/expression-language": "^2",
-        "symfony/var-dumper": "^3.0",
-        "symfony/yaml": "^2.7",
-        "zicht/itertools": "^2.8",
-        "zicht/util": "^1.7"
+        "symfony/var-dumper": "^2",
+        "symfony/yaml": "^2",
+        "zicht/itertools": "^2",
+        "zicht/util": "^1"
     },
     "autoload": {"psr-0": {"": "src/"}},
     "bin": ["bin/goggle"],
