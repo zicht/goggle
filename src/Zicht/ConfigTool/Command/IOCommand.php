@@ -26,12 +26,12 @@ abstract class IOCommand extends Console\Command\Command
     protected function configure()
     {
         $this
-            ->addOption('inline', 'x', Console\Input\InputOption::VALUE_NONE, 'Use inputfile as output file. Conflicts with -f, implies -b')
+            ->addOption('edit', 'e', Console\Input\InputOption::VALUE_REQUIRED, 'Edit the file. Conflicts with -f and -i, implies -b')
             ->addOption('buffer', 'b', Console\Input\InputOption::VALUE_NONE, "Buffer input. Useful if you want to write to the same file that you're reading")
             ->addOption('input', 'i', Console\Input\InputOption::VALUE_REQUIRED, 'The file to read (default is STDIN)', 'php://stdin')
-            ->addOption('output', 'f', Console\Input\InputOption::VALUE_REQUIRED, 'The file to write to', 'php://stdout')
+            ->addOption('output', 'o', Console\Input\InputOption::VALUE_REQUIRED, 'The file to write to', 'php://stdout')
             ->addOption('input-format', 't', Console\Input\InputOption::VALUE_REQUIRED, 'Input format (one of: ' . join(', ', Loader\Factory::supportedTypes()) . ')', null)
-            ->addOption('output-format', 'o', Console\Input\InputOption::VALUE_REQUIRED, 'Output format (one of: ' . join(', ', Writer\Factory::supportedTypes()) . ')', 'json');
+            ->addOption('output-format', 'f', Console\Input\InputOption::VALUE_REQUIRED, 'Output format (one of: ' . join(', ', Writer\Factory::supportedTypes()) . ')', null);
     }
 
     /**
@@ -44,6 +44,13 @@ abstract class IOCommand extends Console\Command\Command
     {
         $inputFile = $input->getOption('input');
 
+        if ($input->getOption('edit')) {
+            if ($inputFile !== $this->getDefinition()->getOption('input')->getDefault()) {
+                throw new \InvalidArgumentException("You cannot specify both --edit (-e) and --input (-i)");
+            }
+            $inputFile = $input->getOption('edit');
+        }
+
         if ($inputFile === '-') {
             $inputFile = 'php://stdin';
             if (!($inputFormat = $input->getOption('input-format'))) {
@@ -54,13 +61,15 @@ abstract class IOCommand extends Console\Command\Command
             $inputFormat = Loader\Factory::guessType($inputFile);
         }
 
+        $input->setOption('input-format', $inputFormat);
+
         $loader = Loader\Factory::createLoader($inputFormat);
         $inputStream = fopen($inputFile, 'r');
         if (!$inputStream) {
             throw new \RuntimeException("Could not open input");
         }
 
-        if ($input->getOption('buffer') || $input->getOption('inline')) {
+        if ($input->getOption('buffer') || $input->getOption('edit')) {
             $tmp = fopen('php://memory', 'rw');
             fwrite($tmp, stream_get_contents($inputStream));
             fseek($tmp, 0);
@@ -79,14 +88,14 @@ abstract class IOCommand extends Console\Command\Command
     protected function getWriter(Console\Input\InputInterface $input)
     {
         $outputFile = $input->getOption('output');
-        if ($input->getOption('inline')) {
+        if ($input->getOption('edit')) {
             if ($outputFile !== $this->getDefinition()->getOption('output')->getDefault()) {
-                throw new \InvalidArgumentException("You cannot specify both --inline (-x) and --output (-f)");
+                throw new \InvalidArgumentException("You cannot specify both --edit (-e) and --output (-f)");
             }
-            $outputFile = $input->getOption('input');
+            $outputFile = $input->getOption('edit');
         }
 
-        $writer = Writer\Factory::createWriter($input->getOption('output-format'));
+        $writer = Writer\Factory::createWriter($input->getOption('output-format') ?: $input->getOption('input-format') ?: 'json');
         $writer->setOutput(fopen($outputFile, 'w'));
         return $writer;
     }
