@@ -24,6 +24,7 @@ class SetCommand extends IOCommand
         $this
             ->setName('set')
             ->addOption('strict', '', Console\Input\InputOption::VALUE_NONE)
+            ->addOption('value-type', 't', Console\Input\InputOption::VALUE_REQUIRED, "The type of the value (cast it to one of: `bool`, `int`, `float` or `null`)")
             ->addArgument('path', Console\Input\InputArgument::IS_ARRAY, 'Path to following when setting the value. Last item in the path is the value');
     }
 
@@ -38,6 +39,27 @@ class SetCommand extends IOCommand
         $path = $input->getArgument("path");
         $value = array_pop($path);
         $obj = $loader->load();
+
+        switch ($input->getArgument('value-type')) {
+            case 'bool':
+            case 'boolean':
+                $value = (bool)$value;
+                break;
+            case 'int':
+            case 'integer':
+                $value = (int)$value;
+                break;
+            case 'double':
+            case 'float':
+            case 'number':
+                $value = (float)$value;
+                break;
+            case 'null':
+                $value = null;
+                break;
+            default:
+                // do nothing
+        }
 
         TreeTools::setByPath($obj, $path, $value);
         $writer->write($obj);

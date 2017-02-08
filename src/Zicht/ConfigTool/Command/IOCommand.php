@@ -11,12 +11,7 @@ use Zicht\ConfigTool\Loader;
 use Zicht\ConfigTool\Writer;
 
 /**
- * Base command for common handling of in- and output using the following options:
- *
- * * [--input|-i] File to read
- * * [--output|-f] File to output to
- * * [--input-format|t] Input format ("type") to read
- * * [--output-format|o] Output format to write
+ * Base command for common handling of in- and output
  */
 abstract class IOCommand extends Console\Command\Command
 {
@@ -30,8 +25,8 @@ abstract class IOCommand extends Console\Command\Command
             ->addOption('buffer', 'b', Console\Input\InputOption::VALUE_NONE, "Buffer input. Useful if you want to write to the same file that you're reading")
             ->addOption('input', 'i', Console\Input\InputOption::VALUE_REQUIRED, 'The file to read (default is STDIN)', 'php://stdin')
             ->addOption('output', 'o', Console\Input\InputOption::VALUE_REQUIRED, 'The file to write to', 'php://stdout')
-            ->addOption('input-format', 't', Console\Input\InputOption::VALUE_REQUIRED, 'Input format (one of: ' . join(', ', Loader\Factory::supportedTypes()) . ')', null)
-            ->addOption('output-format', 'f', Console\Input\InputOption::VALUE_REQUIRED, 'Output format (one of: ' . join(', ', Writer\Factory::supportedTypes()) . ')', null);
+            ->addOption('input-format', 'I', Console\Input\InputOption::VALUE_REQUIRED, 'Input format (one of: ' . join(', ', Loader\Factory::supportedTypes()) . ')', null)
+            ->addOption('output-format', 'O', Console\Input\InputOption::VALUE_REQUIRED, 'Output format (one of: ' . join(', ', Writer\Factory::supportedTypes()) . ')', null);
     }
 
     /**
