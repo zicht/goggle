@@ -10,6 +10,9 @@ use Symfony\Component\Console\Output\StreamOutput;
 use Zicht\Itertools as iter;
 use Zicht\ConfigTool\Writer\AbstractWriter;
 
+/**
+ * Writes data as a nicely formatted console table (Symfony Console)
+ */
 class ConsoleTable extends AbstractTextWriter
 {
     /**

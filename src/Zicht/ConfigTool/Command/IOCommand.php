@@ -78,6 +78,7 @@ abstract class IOCommand extends Console\Command\Command
      * Get the writer based on output parameters
      *
      * @param Console\Input\InputInterface $input
+     * @param Console\Output\OutputInterface $output
      * @return Writer\WriterInterface
      */
     protected function getWriter(Console\Input\InputInterface $input, Console\Output\OutputInterface $output)

@@ -7,6 +7,9 @@ namespace Zicht\ConfigTool\Writer\Impl;
 
 use Zicht\Itertools as iter;
 
+/**
+ * Writes data as a markdown table
+ */
 class MarkdownTable extends AbstractTextWriter
 {
     /**
