@@ -23,6 +23,7 @@ class SetCommand extends IOCommand
 
         $this
             ->setName('set')
+            ->setDescription('Set a value on the specified path')
             ->addOption('strict', '', Console\Input\InputOption::VALUE_NONE)
             ->addOption('value-type', 't', Console\Input\InputOption::VALUE_REQUIRED, "The type of the value (cast it to one of: `bool`, `int`, `float` or `null`)")
             ->addArgument('path', Console\Input\InputArgument::IS_ARRAY, 'Path to following when setting the value. Last item in the path is the value');
