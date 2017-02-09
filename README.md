@@ -108,4 +108,4 @@ Read the behat features to see more possibilities.
 
 ## Reference
 
-Read the [https://github.com/zicht/goggle/wiki](wiki) for a more detailed reference.
+Read the [wiki](https://github.com/zicht/goggle/wiki) for a more detailed reference.
