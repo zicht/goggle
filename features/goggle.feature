@@ -22,7 +22,7 @@ Feature: Goggle command line usage
 
   Scenario: get a single output
     Given there is a file named "names.json" with contents from "names.json"
-    When I execute goggle with arguments "get -i names.json 0 name -o text"
+    When I execute goggle with arguments "get -i names.json 0 name -O text"
     Then I should see
     """
     John Doe
@@ -31,7 +31,7 @@ Feature: Goggle command line usage
   Scenario: get a single output
     Given there is a file named "names.json" with contents from "names.json"
     When I execute goggle with arguments "get -i names.json 0"
-    When I execute piped goggle with arguments "get -t json name -o text"
+    When I execute piped goggle with arguments "get -I json name -O text"
     Then I should see
     """
     John Doe
@@ -39,7 +39,7 @@ Feature: Goggle command line usage
 
   Scenario: Convert output from json to text
     Given there is a file named "names.json" with contents from "names.json"
-    When I execute goggle with arguments "get -i names.json -o text"
+    When I execute goggle with arguments "get -i names.json -O text"
     Then I should see
     """
     1	John Doe
@@ -48,7 +48,7 @@ Feature: Goggle command line usage
 
   Scenario: Convert output from json to yaml
     Given there is a file named "names.json" with contents from "names.json"
-    When I execute goggle with arguments "get -i names.json -o yaml"
+    When I execute goggle with arguments "get -i names.json -O yaml"
     Then I should see
     """
     -
@@ -78,7 +78,7 @@ Feature: Goggle command line usage
 
   Scenario: Sort and map
     Given there is a file named "simpsons.json" with contents from "simpsons.json"
-    When I execute goggle with arguments "process -i simpsons.json sortBy age map 'name' -o text"
+    When I execute goggle with arguments "process -i simpsons.json sortBy age map 'name' -O text"
     Then I should see
     """
     Maggie Simpson
@@ -90,7 +90,7 @@ Feature: Goggle command line usage
 
   Scenario: Mapby and ksort
     Given there is a file named "simpsons.json" with contents from "simpsons.json"
-    When I execute goggle with arguments "process -i simpsons.json mapBy 'age' ksort fields 'name' 'age' -o text "
+    When I execute goggle with arguments "process -i simpsons.json mapBy 'age' ksort fields 'name' 'age' -O text "
     Then I should see
     """
     Maggie Simpson	2
@@ -102,7 +102,7 @@ Feature: Goggle command line usage
 
   Scenario: Unique values
     Given there is a file named "simpsons.json" with contents from "simpsons.json"
-    When I execute goggle with arguments "process -i simpsons.json unique 'role' map 'role' sort -o text"
+    When I execute goggle with arguments "process -i simpsons.json unique 'role' map 'role' sort -O text"
     Then I should see
     """
     daughter

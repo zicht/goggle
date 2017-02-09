@@ -53,8 +53,10 @@ class FeatureContext implements Context
      */
     public function iAmInATestDir()
     {
-        $dir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . "behat-test";
-        mkdir($dir, 0777, true);
+        $dir = __DIR__ . '/../var';
+        if (!is_dir($dir)) {
+            mkdir($dir, 0777, true);
+        }
         $this->createdFiles[]= $dir;
         chdir($dir);
     }
@@ -94,9 +96,6 @@ class FeatureContext implements Context
         while ($file = array_pop($this->createdFiles)) {
             if (is_file($file)) {
                 @unlink($file);
-            }
-            if (is_dir($file)) {
-                rmdir($file);
             }
         }
     }
