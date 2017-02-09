@@ -108,20 +108,24 @@ goggle get -I yaml -o json < ./app/config/parameters.yml
 Set the database host name in the following file:
 
 ```
+parameters:
+    database_host: localhost
+```
+
+Running this:
+
+```
 goggle set -e app/config/parameters_staging.yml parameters database_host remote_host
 ```
 
-Given the following file:
+Will change the value to:
+
 ```
 parameters:
     database_host: remote_host
 ```
 
-This would output:
-
-```
-foo
-```
+Of course the `-e` flag is especially useful for this command, but it's not compulsory.
 
 ## More documentation by example ##
 
