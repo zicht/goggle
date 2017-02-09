@@ -63,7 +63,7 @@ goggle get -i ./composer.lock packages | goggle process -I json fields name vers
 ```
 
 ### Example 2 ###
-Read the database host name from the following file and output it in JSON:
+Read the database host name from the following file and output it's value:
 
 ```
 goggle get -I yaml parameters database_host -O json -O text < app/config/parameters_staging.yml
@@ -76,7 +76,7 @@ parameters:
 ```
 This would output:
 ```
-"foo"
+foo
 ```
 
 ### Example 3 ###
@@ -102,6 +102,25 @@ or:
 
 ```
 goggle get -I yaml -o json < ./app/config/parameters.yml
+```
+
+### Example 5 ###
+Set the database host name in the following file:
+
+```
+goggle set -e app/config/parameters_staging.yml parameters database_host remote_host
+```
+
+Given the following file:
+```
+parameters:
+    database_host: remote_host
+```
+
+This would output:
+
+```
+foo
 ```
 
 ## More documentation by example ##
