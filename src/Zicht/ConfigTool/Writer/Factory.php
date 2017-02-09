@@ -66,6 +66,14 @@ class Factory
      */
     public static function supportedTypes()
     {
-        return [self::YAML, self::JSON, self::COLUMNS, self::DUMP];
+        return [
+            self::YAML,
+            self::JSON,
+            self::INI,
+            self::COLUMNS,
+            self::TABLE,
+            self::MARKDOWN,
+            self::DUMP
+        ];
     }
 }

@@ -1,0 +1,7 @@
+[
+    {"first_name": "Bart", "last_name": "Simpson", "age": "10", "role": "son", "gender": "male"},
+    {"first_name": "Lisa", "last_name": "Simpson", "age": "9", "role": "daughter", "gender": "female"},
+    {"first_name": "Maggie", "last_name": "Simpson", "age": "2", "role": "daughter", "gender": "female"},
+    {"first_name": "Homer", "last_name": "Simpson", "age": "45", "role": "father", "gender": "male"},
+    {"first_name": "Marge", "last_name": "Simpson", "age": "43", "role": "mother", "gender": "female"}
+]

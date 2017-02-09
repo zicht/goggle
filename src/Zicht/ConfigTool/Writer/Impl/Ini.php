@@ -7,6 +7,7 @@
 namespace Zicht\ConfigTool\Writer\Impl;
 
 use Zicht\ConfigTool\Writer\AbstractWriter;
+use Zicht\ConfigTool\Writer\UnsupportedFormatException;
 
 /**
  * Writes the value as an ini file
@@ -25,7 +26,7 @@ class Ini extends AbstractWriter
                 fprintf($this->outputStream, "[%s]\n", $k);
                 foreach ((array)$v as $subKey => $subValue) {
                     if (!is_scalar($subValue)) {
-                        throw new \UnexpectedValueException("Can not serialize a non-scalar in an ini file");
+                        throw new UnsupportedFormatException("Can not serialize a non-scalar in an ini file");
                     }
                     fprintf($this->outputStream, "%s = %s\n", $subKey, $subValue);
                 }

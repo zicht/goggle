@@ -5,6 +5,8 @@
  */
 namespace Zicht\ConfigTool\Writer\Impl;
 
+use Symfony\Component\VarDumper\Cloner\VarCloner;
+use Symfony\Component\VarDumper\Dumper\CliDumper;
 use Symfony\Component\VarDumper\VarDumper;
 use Zicht\ConfigTool\Writer\AbstractWriter;
 
@@ -18,6 +20,8 @@ class Dump extends AbstractWriter
      */
     public function write($value)
     {
-        fwrite($this->outputStream, VarDumper::dump($value));
+        $dumper = new CliDumper();
+        $dumper->setOutput($this->outputStream);
+        $dumper->dump((new VarCloner())->cloneVar($value));
     }
 }

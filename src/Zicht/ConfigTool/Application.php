@@ -14,7 +14,7 @@ use Zicht\ConfigTool\Command;
  */
 class Application extends Console\Application
 {
-    public static $VERSION = 'dev';
+    public static $VERSION = '2.0';
 
     /**
      * @{inheritDoc}

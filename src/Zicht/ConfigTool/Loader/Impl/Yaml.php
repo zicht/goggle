@@ -18,6 +18,6 @@ class Yaml extends AbstractLoader
      */
     public function load()
     {
-        return YamlParser::parse(stream_get_contents($this->inputStream));
+        return (array)YamlParser::parse(stream_get_contents($this->inputStream));
     }
 }

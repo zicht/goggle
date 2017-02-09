@@ -6,28 +6,34 @@
     (_._)-(_._)
 ```
 
-Not to be confused with Google. Google finds anything, Goggle will help you look at anything.
+Not to be confused with Google. Google finds anything, Goggle will help you
+look at anything.
 
 Nearly anything ;)
 
 ## What is it? ##
 
-A command line tool to easily read values from config files and output them in several different formats, with chaining through piping in mind.
+A command line tool to easily read values from config files and output them in
+several different formats, with chaining through piping in mind.
 
 ## Supported formats ##
 
 * Input: `json`, `yaml` and `ini`
-* Output: `json`, `yaml`, `ini`, `text` (column based)
+* Output: `json`, `yaml`, `ini`, `text` (column based), formatted console
+  table, markdown table
 
 ## Usage ##
 
 ### Read a 'deep' value from a configuration file
 
 ```
-goggle get -i FILE element0..elementN [-o=FORMAT]
+goggle get -i FILE element0..elementN [-O=FORMAT]
 ```
 
 Read value FILE from path `element0..elementN` and output it in the specified format.
+
+For example given a JSON string `{"a": {"b": {"c": 123}}}`, reading the value
+'123' would be done by executing `goggle get a b c`
  
 ### Process a set of values
   
@@ -45,20 +51,20 @@ goggle process -i FILE mapBy name fields author name
 Show package names, versions and authors, extracted from composer.lock
 
 ```
-goggle get -i ./composer.lock packages | goggle process -t json fields name version authors | goggle process -t json mapBy name 
+goggle get -i ./composer.lock packages | goggle process -I json fields name version authors | goggle process -I json mapBy name 
 ```
 
 Or only get the one for `symfony/symfony`:
 
 ```
-goggle get -i ./composer.lock packages | goggle process -t json fields name version authors | goggle process -t json mapBy name | goggle get "symfony/symfony"
+goggle get -i ./composer.lock packages | goggle process -I json fields name version authors | goggle process -I json mapBy name | goggle get "symfony/symfony"
 ```
 
 ### Example 2 ###
 Read the database host name from the following file and output it in JSON:
 
 ```
-cat app/config/parameters_staging.yml | goggle get -t yaml parameters database_host -o json
+cat app/config/parameters_staging.yml | goggle get -I yaml parameters database_host -O json
 ```
 
 Given the following file:
@@ -75,7 +81,7 @@ This would output:
 See all values available in a composer lock file
 
 ```
-goggle get -i composer.lock -o=dump
+goggle get -i composer.lock -O dump
 ```
 
 Or read all package names and versions from a composer lockfile:
@@ -88,15 +94,18 @@ goggle get -i composer.lock | goggle fields name version
 Or simply convert yml to json:
 
 ```
-goggle get app/config/parameters.yml -o json
+goggle get app/config/parameters.yml -O json
 ```
 or:
 
 ```
-goggle get - -t yaml -o json < ./app/config/parameters.yml
+goggle get -I yaml -o json < ./app/config/parameters.yml
 ```
 
 ## More documentation by example ##
 
 Read the behat features to see more possibilities.
 
+## Reference
+
+Read the [https://github.com/zicht/goggle/wiki](wiki) for a more detailed reference.

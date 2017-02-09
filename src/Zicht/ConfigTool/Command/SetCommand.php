@@ -34,13 +34,13 @@ class SetCommand extends IOCommand
     protected function execute(Console\Input\InputInterface $input, Console\Output\OutputInterface $output)
     {
         $loader = $this->getLoader($input);
-        $writer = $this->getWriter($input);
+        $writer = $this->getWriter($input, $output);
 
         $path = $input->getArgument("path");
         $value = array_pop($path);
         $obj = $loader->load();
 
-        switch ($input->getArgument('value-type')) {
+        switch ($input->getOption('value-type')) {
             case 'bool':
             case 'boolean':
                 $value = (bool)$value;

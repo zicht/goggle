@@ -25,7 +25,13 @@ class ChainCommand extends IOCommand
         $this
             ->setName('chain')
             ->setDescription("Chain (merge) multiple sets of input together")
-            ->addOption('list', 'l', Console\Input\InputOption::VALUE_OPTIONAL, 'Wether to wrap each argument\'s result as a list (i.e., consider the contents of the file the first element of a list)')
+            ->addOption(
+                'list',
+                'l',
+                Console\Input\InputOption::VALUE_OPTIONAL,
+                'Wether to wrap each argument\'s result as a list '
+                . ' (i.e., consider the contents of the file the first element of a list)'
+            )
             ->addArgument('files', Console\Input\InputArgument::REQUIRED | Console\Input\InputArgument::IS_ARRAY, 'Files to chain');
     }
 
@@ -35,7 +41,7 @@ class ChainCommand extends IOCommand
      */
     protected function execute(Console\Input\InputInterface $input, Console\Output\OutputInterface $output)
     {
-        $writer = $this->getWriter($input);
+        $writer = $this->getWriter($input, $output);
 
         $writer->write(
             array_reduce(

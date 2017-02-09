@@ -39,7 +39,7 @@ class ProcessCommand extends IOCommand
     protected function execute(Console\Input\InputInterface $input, Console\Output\OutputInterface $output)
     {
         $loader = $this->getLoader($input);
-        $writer = $this->getWriter($input);
+        $writer = $this->getWriter($input, $output);
 
         $instructions = $input->getArgument('instructions');
 

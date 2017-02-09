@@ -24,7 +24,7 @@ abstract class IOCommand extends Console\Command\Command
             ->addOption('edit', 'e', Console\Input\InputOption::VALUE_REQUIRED, 'Edit the file. Conflicts with -f and -i, implies -b')
             ->addOption('buffer', 'b', Console\Input\InputOption::VALUE_NONE, "Buffer input. Useful if you want to write to the same file that you're reading")
             ->addOption('input', 'i', Console\Input\InputOption::VALUE_REQUIRED, 'The file to read (default is STDIN)', 'php://stdin')
-            ->addOption('output', 'o', Console\Input\InputOption::VALUE_REQUIRED, 'The file to write to', 'php://stdout')
+            ->addOption('output', 'o', Console\Input\InputOption::VALUE_REQUIRED, 'The file to write to', null)
             ->addOption('input-format', 'I', Console\Input\InputOption::VALUE_REQUIRED, 'Input format (one of: ' . join(', ', Loader\Factory::supportedTypes()) . ')', null)
             ->addOption('output-format', 'O', Console\Input\InputOption::VALUE_REQUIRED, 'Output format (one of: ' . join(', ', Writer\Factory::supportedTypes()) . ')', null);
     }
@@ -80,7 +80,7 @@ abstract class IOCommand extends Console\Command\Command
      * @param Console\Input\InputInterface $input
      * @return Writer\WriterInterface
      */
-    protected function getWriter(Console\Input\InputInterface $input)
+    protected function getWriter(Console\Input\InputInterface $input, Console\Output\OutputInterface $output)
     {
         $outputFile = $input->getOption('output');
         if ($input->getOption('edit')) {
@@ -91,7 +91,11 @@ abstract class IOCommand extends Console\Command\Command
         }
 
         $writer = Writer\Factory::createWriter($input->getOption('output-format') ?: $input->getOption('input-format') ?: 'json');
-        $writer->setOutput(fopen($outputFile, 'w'));
+        if (null === $outputFile && $output instanceof Console\Output\StreamOutput) {
+            $writer->setOutput($output->getStream());
+        } else {
+            $writer->setOutput(fopen($outputFile ?: 'php://stdout', 'w'));
+        }
         return $writer;
     }
 }

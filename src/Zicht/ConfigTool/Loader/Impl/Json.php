@@ -17,6 +17,6 @@ class Json extends AbstractLoader
      */
     public function load()
     {
-        return json_decode(stream_get_contents($this->inputStream), JSON_OBJECT_AS_ARRAY);
+        return (array)json_decode(stream_get_contents($this->inputStream), JSON_OBJECT_AS_ARRAY);
     }
 }

@@ -18,7 +18,7 @@ class Yaml extends AbstractWriter
      */
     public function write($value)
     {
-        fwrite($this->outputStream, YamlWriter::dump($value));
-        fwrite($this->outputStream, "\n");
+        $yaml = YamlWriter::dump($value);
+        fwrite($this->outputStream, $yaml);
     }
 }

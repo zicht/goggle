@@ -21,10 +21,12 @@ class MarkdownTable extends AbstractTextWriter
         $values = self::toScalarTable($value);
         $headers = iter\iterable($values->first())->keys();
 
-        fprintf($this->outputStream, "%s\n", join(' | ', $headers));
-        fprintf($this->outputStream, "%s\n", join(' | ', array_map($fnStrToSeparator, $headers)));
-        foreach ($values as $row) {
-            fprintf($this->outputStream, "%s\n", join(' | ', $row));
+        if (count($values)) {
+            fprintf($this->outputStream, "%s\n", join(' | ', $headers));
+            fprintf($this->outputStream, "%s\n", join(' | ', array_map($fnStrToSeparator, $headers)));
+            foreach ($values as $row) {
+                fprintf($this->outputStream, "%s\n", join(' | ', $row));
+            }
         }
         fprintf($this->outputStream, "\n");
     }
