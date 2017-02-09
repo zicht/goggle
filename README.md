@@ -51,7 +51,9 @@ goggle process -i FILE mapBy name fields author name
 Show package names, versions and authors, extracted from composer.lock
 
 ```
-goggle get -i ./composer.lock packages | goggle process -I json fields name version authors | goggle process -I json mapBy name 
+goggle get -i ./composer.lock packages \
+    | goggle process -I json fields name version authors \
+    | goggle process -I json mapBy name 
 ```
 
 Or only get the one for `symfony/symfony`:
@@ -64,7 +66,7 @@ goggle get -i ./composer.lock packages | goggle process -I json fields name vers
 Read the database host name from the following file and output it in JSON:
 
 ```
-cat app/config/parameters_staging.yml | goggle get -I yaml parameters database_host -O json
+goggle get -I yaml parameters database_host -O json -O text < app/config/parameters_staging.yml
 ```
 
 Given the following file:
@@ -108,4 +110,5 @@ Read the behat features to see more possibilities.
 
 ## Reference
 
-Read the [wiki](https://github.com/zicht/goggle/wiki) for a more detailed reference.
+Read the [wiki](https://github.com/zicht/goggle/wiki) for a more detailed
+reference.
