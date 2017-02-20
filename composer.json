@@ -1,5 +1,7 @@
 {
+    "license": "MIT",
     "name": "zicht/goggle",
+    "description": "Introspect and edit config values from the command line",
     "require": {
         "symfony/console": "^2",
         "symfony/expression-language": "^2",
