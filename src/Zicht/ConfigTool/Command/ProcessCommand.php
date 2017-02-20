@@ -6,7 +6,7 @@
 namespace Zicht\ConfigTool\Command;
 
 use Symfony\Component\Console;
-use Symfony\Component\DependencyInjection\ExpressionLanguage;
+use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use Zicht\Itertools as iter;
 
 /**
